@@ -2,16 +2,28 @@
 
 namespace App\Http\Services\PaymentMethods;
 
-class PaypalPayment implements AbstractPaymentMethod
+use App\Http\Requests\TransactionRequest;
+use Illuminate\Support\Facades\Log;
+
+class PaypalPayment extends AbstractPaymentMethod
 {
 
-    public function pay()
+    private $paymentObjectToStore = [];
+    public $serviceName = 'PayPal';
+
+    public function __construct()
     {
-        // TODO: Implement pay() method.
+        // prepare the payment service object
+        $this->paymentObjectToStore['auth_key'] = config('paypal.auth_key');
     }
 
-    public function withdraw()
+    public function pay(TransactionRequest $request)
     {
-        // TODO: Implement withdraw() method.
+        return array_merge($request->convertToStoreObject(), $this->paymentObjectToStore);
+    }
+
+    public function withdraw(TransactionRequest $request)
+    {
+        return array_merge($request->convertToStoreObject(), $this->paymentObjectToStore);
     }
 }

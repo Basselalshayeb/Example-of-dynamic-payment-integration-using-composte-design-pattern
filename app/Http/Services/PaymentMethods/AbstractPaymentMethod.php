@@ -2,10 +2,17 @@
 
 namespace App\Http\Services\PaymentMethods;
 
-interface AbstractPaymentMethod
+use App\Http\Requests\TransactionRequest;
+
+abstract class AbstractPaymentMethod
 {
+    public $serviceName = '';
+
     public const support_payment_methods = ['Visa', 'PayPal'];
 
-    public function pay();
-    public function withdraw();
+    public abstract function pay(TransactionRequest $request);
+
+    public abstract function withdraw(TransactionRequest $request);
+
+
 }

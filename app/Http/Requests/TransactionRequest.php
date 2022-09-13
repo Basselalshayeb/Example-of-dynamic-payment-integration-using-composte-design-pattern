@@ -40,7 +40,31 @@ class TransactionRequest extends FormRequest
     {
         return match ($this->payment_method) {
             AbstractPaymentMethod::support_payment_methods[0] => new VisaPayment(),
-            AbstractPaymentMethod::support_payment_methods[1] => new PaypalPayment()
+            AbstractPaymentMethod::support_payment_methods[1] => new PaypalPayment(),
+            default => new VisaPayment()
         };
     }
+
+    public function convertToStoreObject()
+    {
+        return [
+            'transaction_id' => $this->bigNumber(),
+            'transaction_status' => rand(0, 1),
+            'amount' => $this->amount,
+            'other_data' => $this->only(['payment_method', 'productId']),
+        ];
+    }
+
+    public function bigNumber()
+    {
+        # prevent the first number from being 0
+        $output = rand(1, 9);
+
+        for ($i = 0; $i < 9; $i++) {
+            $output .= rand(0, 9);
+        }
+
+        return $output;
+    }
+
 }
