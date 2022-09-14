@@ -1,0 +1,90 @@
+{
+	"info": {
+		"_postman_id": "0c9f0525-cf04-481a-82f2-dba82c975d0d",
+		"name": "Tessafold",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2664951"
+	},
+	"item": [
+		{
+			"name": "pay",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "payment_method",
+							"value": "Visa",
+							"type": "text"
+						},
+						{
+							"key": "amount",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "productId",
+							"value": "20",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/payments/pay",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"payments",
+						"pay"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "withdraw",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "payment_method",
+							"value": "Visa",
+							"type": "text"
+						},
+						{
+							"key": "amount",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "productId",
+							"value": "20",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/payments/withdraw",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"payments",
+						"withdraw"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
